@@ -1,4 +1,4 @@
-import { SearchIcon } from "lucide-react";
+import { EyeIcon, FootprintsIcon, SearchIcon } from "lucide-react";
 import Header from "./_components/Header";
 import { Button } from "./_components/ui/button";
 import { Input } from "./_components/ui/input";
@@ -12,6 +12,13 @@ import BarberShopItem from "./_components/BarberShop-Item";
 const Home = async () => {
   // Chamar meu banco de dados 
   const barbershops = await db.barbershop.findMany({})
+  const popularBarberShops = await db.barbershop.findMany({
+    orderBy: {
+      name: "desc",
+    },
+  })
+
+
 
   return (
     <div>
@@ -29,6 +36,109 @@ const Home = async () => {
             <SearchIcon />
           </Button>
         </div>
+
+        {/* Busca Rápida */}
+        <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+          <Button className="gap-2" variant="secondary">
+            <Image src="/cabelo.svg" width={16} height={16} alt="cabelo" />
+            Cabelo
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <Image src="/barba.svg" width={16} height={16} alt="barba" />
+            Barba
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <Image 
+            src="/acabamento.svg" 
+            width={16} height={16} 
+            alt="acabamento" 
+            />
+            Acabamento
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <FootprintsIcon size={16} />
+            Pezinho
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+           <EyeIcon size={16}/>
+           Sobrancelha
+          </Button>
+        
+        
+          <Button className="gap-2" variant="secondary">
+            <Image 
+            src="/acabamento.svg" 
+            width={16} height={16} 
+            alt="acabamento" 
+            />
+            Acabamento
+          </Button>
+
+
+          <Button className="gap-2" variant="secondary">
+            <Image 
+            src="/acabamento.svg" 
+            width={16} height={16} 
+            alt="acabamento" 
+            />
+            Acabamento
+          </Button>
+
+
+          <Button className="gap-2" variant="secondary">
+            <Image 
+            src="/acabamento.svg" 
+            width={16} height={16} 
+            alt="acabamento" 
+            />
+            Acabamento
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <Image 
+            src="/acabamento.svg" 
+            width={16} height={16} 
+            alt="acabamento" 
+            />
+            Acabamento
+          </Button>
+
+
+          <Button className="gap-2" variant="secondary">
+            <Image 
+            src="/acabamento.svg" 
+            width={16} height={16} 
+            alt="acabamento" 
+            />
+            Acabamento
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <Image 
+            src="/acabamento.svg" 
+            width={16} height={16} 
+            alt="acabamento" 
+            />
+            Acabamento
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <Image 
+            src="/acabamento.svg" 
+            width={16} height={16} 
+            alt="acabamento" 
+            />
+            Acabamento
+          </Button>
+
+
+
+        </div>
+
 
         {/* Imagem */}
         <div className="relative mt-6 h-[150px] w-full rounded-xl">
@@ -77,7 +187,25 @@ const Home = async () => {
             <BarberShopItem key={barbershop.id} barbershop={barbershop} />
           ))}
         </div>
+
+        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
+          Populares
+        </h2>
+        <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+          {popularBarberShops.map((barbershop) => (
+            <BarberShopItem key={barbershop.id} barbershop={barbershop} />
+          ))}
+        </div>
+
       </div>
+
+      <footer>
+        <Card>
+          <CardContent className="px-5 py-6">
+            <p className="text-sm text-gray-400">© 2023 Copyright FSW Barber</p>
+          </CardContent>
+        </Card>
+      </footer>
     </div>
   );
 };
