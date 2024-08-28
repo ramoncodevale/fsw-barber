@@ -63,6 +63,8 @@ const Home = async () => {
           />
         </div>
 
+        
+
         {/* Agendamento */}
        <BookingItem />
 
