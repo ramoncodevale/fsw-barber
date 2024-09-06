@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 
 interface ServiceItemProps {
-    interface: BarbershopService
+    service: BarbershopService
 }
 
 const ServiceItem = ({ service }: ServiceItemProps) => {
