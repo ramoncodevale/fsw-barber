@@ -7,6 +7,7 @@ import { quickSearchOptions } from "./_constants/search"
 import BookingItem from "./_components/booking-item";
 import Search from "./_components/search";
 import Link from "next/link";
+import ServiceItem from "./_components/service-item";
 
 
 const Home = async () => {
