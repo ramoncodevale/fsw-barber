@@ -12,6 +12,8 @@ import { useState } from "react";
 import { createBooking } from "../_actions/create-booking";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
+import { Dialog, DialogContent } from "@radix-ui/react-dialog";
+import SignInDialog from "./sign-in-dialog";
 
 interface ServiceItemProps {
     service: BarbershopService;
@@ -26,6 +28,7 @@ const TIME_LIST = [
 
 const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
     const { data } = useSession();
+    const [signInDialogIsOpen, setSignInDialogIsOpen] = useState(false)
     const [selectedDay, setSelectedDay] = useState<Date | undefined>(undefined);
     const [selectedTime, setSelectedTime] = useState<string | undefined>(undefined);
     const [dayBookings, setDayBookings] = useState<Booking[]>([])
@@ -68,6 +71,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
       }
 
     return (
+        <>
         <Card>
             <CardContent className="flex items-center gap-2">
                 {/* IMAGE */}
@@ -204,6 +208,17 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                 </div>
             </CardContent>
         </Card>
+
+        <Dialog
+        open={signInDialogIsOpen}
+        onOpenChange={(open) => setSignInDialogIsOpen(open)}
+      >
+        <DialogContent className="w-[90%]">
+          <SignInDialog />
+        </DialogContent>
+      </Dialog>
+        </>
+      
     );
 };
 
