@@ -1,13 +1,13 @@
 "use client";
 
-import { Barbershop, BarbershopService } from "@prisma/client";
+import { Barbershop, BarbershopService, Booking } from "@prisma/client";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
-import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Calendar } from "./ui/calendar";
 import { ptBR } from 'date-fns/locale';
-import { format, set, setMinutes } from 'date-fns';
+import { format, set } from 'date-fns';
 import { useState } from "react";
 import { createBooking } from "../_actions/create-booking";
 import { useSession } from "next-auth/react";
@@ -28,6 +28,9 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
     const { data } = useSession();
     const [selectedDay, setSelectedDay] = useState<Date | undefined>(undefined);
     const [selectedTime, setSelectedTime] = useState<string | undefined>(undefined);
+    const [dayBookings, setDayBookings] = useState<Booking[]>([])
+    const [bookingSheetIsOpen, setBookingSheetIsOpen] = useState(false)
+
 
     const handleDateSelect = (date: Date | undefined) => {
         setSelectedDay(date);
@@ -49,12 +52,20 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                 userId: (data?.user as any).id,
                 date: newDate,
             });
+            handleBookingSheetOpenChange()
             toast.success("Reserva criada com sucesso!");
         } catch (error) {
             console.error(error)
             toast.error("Erro ao criar a reserva.");
         }
     };
+
+    const handleBookingClick = () => {
+        if (data?.user) {
+          return setBookingSheetIsOpen(true)
+        }
+        return setSignInDialogIsOpen(true)
+      }
 
     return (
         <Card>
@@ -85,7 +96,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
 
                         <Sheet>
                             <SheetTrigger asChild>
-                                <Button variant="secondary" size="sm">
+                                <Button variant="secondary" onClick={handleBookingClick} size="sm">
                                     Reservar
                                 </Button>
                             </SheetTrigger>
@@ -100,6 +111,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                                         locale={ptBR}
                                         selected={selectedDay}
                                         onSelect={handleDateSelect}
+                                        fromDate={new Date()}
                                         className="w-full"
                                         styles={{
                                             head_cell: {
@@ -180,13 +192,11 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                                 )}
 
                                 <SheetFooter className="mt-5 px-5">
-                                    <SheetClose asChild>
-                                        <Button onClick={handleCreateBooking}
-                                            disabled={!selectedDay || !selectedTime}
-                                        >
-                                            Confirmar
-                                        </Button>
-                                    </SheetClose>
+                                    <Button onClick={handleCreateBooking}
+                                        disabled={!selectedDay || !selectedTime}
+                                    >
+                                        Confirmar
+                                    </Button>
                                 </SheetFooter>
                             </SheetContent>
                         </Sheet>
