@@ -22,6 +22,7 @@ import { getBookings } from "../_actions/get-bookings"
 import { Dialog, DialogContent } from "./ui/dialog"
 import SignInDialog from "./sign-in-dialog"
 import { useRouter } from "next/navigation"
+import BookingSummary from "./booking-summary"
 
 interface ServiceItemProps {
   service: BarbershopService
@@ -259,7 +260,16 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                       )}
                     </div>
                   )}
-
+                  
+                  {selectedDate && (
+                    <div className="p-5">
+                      <BookingSummary
+                        barbershop={barbershop}
+                        service={service}
+                        selectedDate={selectedDate}
+                      />
+                    </div>
+                  )}
                   <SheetFooter className="mt-5 px-5">
                     <Button
                       onClick={handleCreateBooking}
