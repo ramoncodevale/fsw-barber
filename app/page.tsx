@@ -27,10 +27,12 @@ const Home = async () => {
     <div>
       {/* header */}
       <Header />
-      <div className="p-5">
+      <div className="p-5 lg:mt-16">
         {/* TEXTO */}
+       <div className="lg:px-32 lg:flex">
+        <div className="lg:flex flex-col">
         <h2 className="text-xl font-bold">
-          Olá, {session?.user ? session.user.name : "bem vindo"}!
+          Olá, {session?.user ? `${session.user.name}` : "Faça seu login!"  }
         </h2>
         <p>
           <span className="capitalize">
@@ -46,9 +48,10 @@ const Home = async () => {
         <div className="mt-6">
           <Search />
         </div>
+        </div>
 
         {/* BUSCA RÁPIDA */}
-        <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+        <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden lg:hidden">
           {quickSearchOptions.map((option) => (
             <Button
               className="gap-2"
@@ -70,7 +73,7 @@ const Home = async () => {
         </div>
 
         {/* IMAGEM */}
-        <div className="relative mt-6 h-[150px] w-full">
+        <div className="relative mt-6 h-[150px] w-full lg:hidden">
           <Image
             alt="Agende nos melhores com FSW Barber"
             src="/banner.png"
@@ -97,7 +100,8 @@ const Home = async () => {
           </>
         )}
 
-        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
+        <div className="lg:flex flex-col lg:px-32">
+        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400 lg:mt-0">
           Recomendados
         </h2>
         <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
@@ -105,7 +109,10 @@ const Home = async () => {
             <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}
         </div>
-
+        </div>
+        </div>
+        
+        <div className="lg:px-32"> 
         <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
           Populares
         </h2>
@@ -113,8 +120,9 @@ const Home = async () => {
           {popularBarbershops.map((barbershop) => (
             <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}
-        </div>
       </div>
+      </div>
+    </div>
     </div>
   )
 }
