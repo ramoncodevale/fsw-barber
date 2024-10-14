@@ -10,17 +10,27 @@ import Link from "next/link"
 import { signIn } from "next-auth/react"
 import { Avatar, AvatarImage } from "./ui/avatar"
 import { useSession } from "next-auth/react"
+import Search from "./search"
 
-const Header = () => {
+interface HeaderProps {
+  hasSearch: boolean
+
+}
+
+const Header = ({hasSearch}: HeaderProps) => {
   const { data } = useSession()
   const handleLoginWithGoogleClick = () => signIn("google")
 
   return (
     <Card className="lg:px-32">
-      <CardContent className="flex flex-row items-center justify-between p-5 lg:p-7">
+      <CardContent className="hidden lg:flex lg:flex-row items-center justify-between p-5 lg:p-7">
         <Link href="/">
           <Image alt="FSW Barber" src="/logo.png" height={18} width={120} />
         </Link>
+
+        {hasSearch && (
+          <Search />
+        )}
 
 
         <div className="lg:hidden">

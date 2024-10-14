@@ -30,8 +30,8 @@ import {
 import { DialogClose } from "@radix-ui/react-dialog"
 import { toast } from "sonner"
 import { useState } from "react"
-import { deleteBooking } from "../_actions/delete-bookings"
 import BookingSummary from "./booking-summary"
+import { deleteBooking } from "../_actions/delete-bookings"
 
 interface BookingItemProps {
   booking: Prisma.BookingGetPayload<{

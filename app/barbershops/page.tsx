@@ -40,8 +40,8 @@ const BarberShopsPage = async ({ searchParams }: BarberShopsPageProps) => {
     
     return (
         <div>
-            <Header />
-            <div className="my-6 px-5">
+            <Header hasSearch={false} />
+            <div className="my-6 px-5 ">
                 <Search />
             </div>
             <div className="px-5">
