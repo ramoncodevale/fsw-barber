@@ -15,7 +15,6 @@ const Recomended = ({ barbershops }: RecomendedProps) => {
       <Button
         variant="outline"
         className="absolute left-0 z-10 hidden lg:block rounded-full p-2"
-        // Ação removida (scrollLeft)
         disabled
       >
         <ChevronLeft />
@@ -35,7 +34,6 @@ const Recomended = ({ barbershops }: RecomendedProps) => {
       <Button
         variant="outline"
         className="absolute right-0 z-10 hidden lg:block rounded-full p-2"
-        // Ação removida (scrollRight)
         disabled
       >
         <ChevronRight />
