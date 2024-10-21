@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import { signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import SignInDialog from "./sign-in-dialog";
+import { ModeToggle } from "./mode-toggle";
 
 const SideBarSheet = () => {
     const { data } = useSession()
@@ -96,6 +97,10 @@ const SideBarSheet = () => {
                     <LogOutIcon size={18} />
                     Sair da conta
                 </Button>
+
+                <div className="mt-7">
+                        <ModeToggle />
+                    </div>
             </div>
         </SheetContent>
     );
