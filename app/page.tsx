@@ -24,7 +24,7 @@ const Home = async () => {
 
   return (
     <div>
-      <div className="p-5 lg:p-5">
+      <div className="p-5 lg:px-32 mt-12">
         {/* Texto de Boas-Vindas */}
         <h2 className="text-xl font-bold">
           Olá, {session?.user ? session.user.name : "bem vindo"}!
