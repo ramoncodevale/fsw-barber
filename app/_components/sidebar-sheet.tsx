@@ -98,7 +98,7 @@ const SideBarSheet = () => {
                     Sair da conta
                 </Button>
 
-                <div className="mt-7">
+                <div className="flex justify-center mt-7">
                         <ModeToggle />
                     </div>
             </div>
