@@ -1,6 +1,5 @@
-import Header from "@/app/_components/header"
+import HeaderSearch from "@/app/_components/header-search"
 import PhoneItem from "@/app/_components/phone-item"
-import Search from "@/app/_components/search"
 import ServiceItem from "@/app/_components/service-item"
 import SidebarSheet from "@/app/_components/sidebar-sheet"
 import { Button } from "@/app/_components/ui/button"
@@ -34,10 +33,6 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
 
   return (
     <div>
-        <Header hasSearch={true} />
-
-
-
       {/* IMAGEM */}
       <div className="relative h-[250px] w-full lg:flex justify-center items-center">
         <Image
@@ -68,7 +63,8 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
               <MenuIcon />
             </Button>
           </SheetTrigger>
-          <Header hasSearch={false} />
+                <HeaderSearch />
+
           <SidebarSheet />
         </Sheet>
       </div>
