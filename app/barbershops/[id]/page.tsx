@@ -1,4 +1,4 @@
-import HeaderSearch from "@/app/_components/header-search"
+import Header from "@/app/_components/header"
 import PhoneItem from "@/app/_components/phone-item"
 import ServiceItem from "@/app/_components/service-item"
 import SidebarSheet from "@/app/_components/sidebar-sheet"
@@ -33,6 +33,10 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
 
   return (
     <div>
+      <div className="hidden lg:block"> 
+        <Header hasSearch={true} />
+      </div>
+
       {/* IMAGEM */}
       <div className="relative h-[250px] w-full lg:flex justify-center items-center">
         <Image
@@ -63,8 +67,7 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
               <MenuIcon />
             </Button>
           </SheetTrigger>
-                <HeaderSearch />
-
+        
           <SidebarSheet />
         </Sheet>
       </div>
@@ -72,19 +75,21 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
       {/* TÍTULO */}
       <div className="border-b border-solid p-5">
         <h1 className="mb-3 text-xl font-bold">{barbershop.name}</h1>
-        <div className="mb-2 flex items-center gap-2">
-          <MapPinIcon className="text-primary" size={18} />
-          <p className="text-sm">{barbershop?.address}</p>
-        </div>
+        <div className="lg:flex justify-between">
+          <div className="mb-2 flex items-center gap-2">
+            <MapPinIcon className="text-primary" size={18} />
+            <p className="text-sm">{barbershop?.address}</p>
+          </div>
 
-        <div className="flex items-center gap-2">
-          <StarIcon className="fill-primary text-primary" size={18} />
-          <p className="text-sm">5,0 (499 avaliações)</p>
+          <div className="flex items-center gap-2">
+            <StarIcon className="fill-primary text-primary" size={18} />
+            <p className="text-sm">5,0 (499 avaliações)</p>
+          </div>
         </div>
       </div>
 
       {/* DESCRIÇÃO */}
-      <div className="space-y-2 border-b border-solid p-5">
+      <div className="space-y-2 border-b border-solid p-5 lg:hidden">
         <h2 className="text-xs font-bold uppercase text-gray-400">Sobre nós</h2>
         <p className="text-justify text-sm">{barbershop?.description}</p>
       </div>
@@ -92,19 +97,21 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
       {/* SERVIÇOS */}
       <div className="space-y-3 border-b border-solid p-5">
         <h2 className="text-xs font-bold uppercase text-gray-400">Serviços</h2>
-        <div className="space-y-3">
-          {barbershop.services.map((service) => (
-            <ServiceItem
-              key={service.id}
-              barbershop={JSON.parse(JSON.stringify(barbershop))}
-              service={JSON.parse(JSON.stringify(service))}
-            />
-          ))}
+        <div className="lg:flex items-center">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-5">
+            {barbershop.services.map((service) => (
+              <ServiceItem
+                key={service.id}
+                barbershop={barbershop}
+                service={service}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
       {/* CONTATO */}
-      <div className="space-y-3 p-5">
+      <div className="space-y-3 p-5 lg:hidden">
         {barbershop.phones.map((phone) => (
           <PhoneItem key={phone} phone={phone} />
         ))}

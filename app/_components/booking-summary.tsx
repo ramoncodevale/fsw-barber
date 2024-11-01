@@ -15,6 +15,7 @@ const BookingSummary = ({
     barbershop,
     selectedDate,
 }: BookingSummaryProps) => {
+    
     return (
         <Card>
             <CardContent className="space-y-3 p-3">

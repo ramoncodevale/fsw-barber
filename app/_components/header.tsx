@@ -23,7 +23,7 @@ const Header = ({hasSearch}: HeaderProps) => {
 
   return (
     <Card className="lg:px-32">
-      <CardContent className="flex justify-between items-center lg:flex lg:flex-row items-center justify-between p-5 lg:p-7">
+      <CardContent className="flex justify-between items-center lg:flex lg:flex-row  p-5 lg:p-7">
         <Link href="/">
           <Image alt="FSW Barber" src="/logo.png" height={18} width={120} />
         </Link>

@@ -5,7 +5,6 @@ import { Toaster } from "./_components/ui/sonner";
 import Footer from "./_components/footer";
 import AuthProvider from "./_providers/auth";
 import { ThemeProvider } from "./_components/theme-provider";
-import Header from "./_components/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,7 +29,6 @@ export default function RootLayout({
         >
           <AuthProvider>
             <div className="flex h-full flex-col">
-              <Header />
               <main className="flex-1">{children}</main>
               <Footer />
             </div>

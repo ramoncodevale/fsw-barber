@@ -1,11 +1,10 @@
 import { getServerSession } from "next-auth";
-import Header from "../_components/header";
-import { db } from "../_lib/prisma";
 import { authOptions } from "../_lib/auth";
 import { notFound } from "next/navigation";
 import BookingItem from "../_components/booking-item";
 import { getConfirmedBookings } from "../data/get-confirmed-bookings";
 import { getConcludedBookings } from "../data/get-conclued-bookings";
+import Header from "../_components/header";
 
 const Bookings = async () => {
     const session = await getServerSession(authOptions);
@@ -40,6 +39,7 @@ const Bookings = async () => {
                         ))}
                     </>
                 )}
+              
 
                 {concludedBookings.length > 0 && (
                     <>

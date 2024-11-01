@@ -1,6 +1,7 @@
 import BarberShopItem from "../_components/barbershop-item";
 import Header from "../_components/header";
-import Search from "../_components/search";
+// import Header from "../_components/header";
+// import Search from "../_components/search";
 import { db } from "../_lib/prisma";
 
 interface BarberShopsPageProps {
@@ -40,7 +41,7 @@ const BarberShopsPage = async ({ searchParams }: BarberShopsPageProps) => {
     
     return (
         <div>
-            
+            <Header hasSearch={true} />
             <div className="px-5">
                 <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
                     Resultados para &quot;{searchParams?.title || searchParams?.service}&quot;

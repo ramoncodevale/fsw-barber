@@ -11,6 +11,7 @@ import { authOptions } from "./_lib/auth";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { getConfirmedBookings } from "./data/get-confirmed-bookings";
+import Header from "./_components/header";
 
 const Home = async () => {
   const session = await getServerSession(authOptions);
@@ -24,6 +25,7 @@ const Home = async () => {
 
   return (
     <div>
+      <Header hasSearch={true} />
       <div className="p-5 lg:px-32 mt-12">
         {/* Texto de Boas-Vindas */}
         <h2 className="text-xl font-bold">
